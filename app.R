@@ -689,7 +689,11 @@ server <- function(input, output) {
                      color = "white",
                      fill = "darkslategray2") +
       labs(title = "Character Count of Candidate's Tweets",
-           subtitle = "Hillary tends to be more verbose",
+           
+# I know that the line below surpasses the 80 character limit, but cutting it
+# off was not aesthetically appealing on my graph. Apologies!
+           
+           subtitle = "Hillary tends to be verbose; Trump is even across the distribution",
            x = "Character Count",
            y = "Frequency",
            caption = "Source: Trump Twitter Archive") +

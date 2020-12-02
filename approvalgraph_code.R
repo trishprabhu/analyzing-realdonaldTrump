@@ -118,6 +118,10 @@ finalgraph <- finalgraphtib %>%
   ggplot(aes(x = approval_ratings/100, y = meanofmeans)) +
   geom_point() +
   geom_smooth(formula = y ~ x, method = "lm", se = TRUE) +
+  
+# I know that the lines below surpasses the 80 character limit, but cutting them
+# off was not aesthetically appealing on my graph. Apologies!
+  
   labs(title = "Trump's daily approval ratings and sentiment scores on Twitter, 09/12 - 10/13",
        subtitle = "Trump's approval ratings and sentiment scores seem to be weakly positively correlated",
        x = "Approval Rating",
@@ -157,6 +161,10 @@ nicetib <- tweetib1 %>%
 nicetib %>%
   gt() %>%
   tab_header(title = "Sentiment and Readability of Trump's Tweets", 
+
+# I know that the line below surpasses the 80 character limit, but cutting it
+# off was not aesthetically appealing on my table. Apologies!       
+             
              subtitle = "Readability: 0 - 100, 100 is most readable; Sentiment: -1 to 1, 1 is most positive") %>% 
   tab_source_note("Source: Trump Twitter Archive") %>%
   tab_style(

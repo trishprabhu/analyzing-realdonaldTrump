@@ -1,4 +1,9 @@
 
+# Just a note: a lot of my comments here are explanatory (simply describing what 
+# the code below does) -- this is because this data wrangling was very 
+# complicated, and explanation/reminder-focused comments were helpful 
+# (especially when I'd revisit the code after a while!). I hope that's okay.
+
 # Load the relevant libraries.
 
 library(MASS)
@@ -17,13 +22,16 @@ fit_obj <- stan_glm(meanofmeans ~ approval_ratings,
 
 print(fit_obj, view = FALSE, digits = 5)
 
-# Create a table of the regression results (doesn't currently work; unsure
-# why):
+# Create a table of the regression results:
 
 fit_obj %>%
   tbl_regression() %>%
   as_gt() %>%
   tab_header(title = "Regression of Trump's Twitter Sentiment Scores", 
+  
+# I know that the line below surpasses the 80 character limit, but cutting it
+# off was not aesthetically appealing on my table. Apologies!      
+             
              subtitle = "The Effect of Approval Ratings on Trump's Twitter Sentiment Score") %>% 
   tab_source_note("Source: Trump Twitter Archive") 
 
@@ -192,6 +200,10 @@ stockgraph <- finalstocktib %>%
   ggplot(aes(x = range, y = meanofmeans)) +
   geom_point() +
   geom_smooth(formula = y ~ x, method = "lm", se = TRUE) +
+  
+# I know that the line below surpasses the 80 character limit, but cutting it
+# off was not aesthetically appealing on my graph. Apologies! 
+  
   labs(title = "Stock opening/closing differences and Trump's daily sentiment scores on Twitter, 09/12 - 10/13",
        subtitle = "The S&P 500's opening/closing differences and Trump's 
        sentiment scores seem to be very, very weakly negatively correlated",
@@ -223,6 +235,10 @@ tweetgraph <- tweetib1 %>%
                    point.padding = 0.5,
                    segment.color = 'grey50') +
   geom_smooth(formula = y ~ x, method = "lm", se = TRUE) +
+  
+# I know that the lines below surpasses the 80 character limit, but cutting them
+# off was not aesthetically appealing on my graph. Apologies! 
+  
   labs(title = "Readability and Sentiment of Trump's Tweets (09/12/20 - 10/13/20)",
        subtitle = "Readability has little relationship with Trump's sentiment on Twitter",
        x = "Readability (0 - 100; 0 is the least readable)",
@@ -252,13 +268,17 @@ character_obj <- stan_glm(sentimentmeans ~ str_length(text),
 
 print(character_obj, view = FALSE, digits = 5)
 
-# Create a visualization of the relationship between character count and sentiment
-# in Tweets.
+# Create a visualization of the relationship between character count and 
+# sentiment in Tweets.
 
 charactergraph <- tweetib1 %>%
   ggplot(aes(x = str_length(text), y = sentimentmeans)) +
   geom_point() +
   geom_smooth(formula = y ~ x, method = "lm", se = TRUE) +
+  
+# I know that the line below surpasses the 80 character limit, but cutting it
+# off was not aesthetically appealing on my graph. Apologies! 
+  
   labs(title = "Character Count and Sentiment of Trump's Tweets (09/12/20 - 10/13/20)",
        subtitle = "",
        x = "Character Count",
@@ -268,13 +288,17 @@ charactergraph <- tweetib1 %>%
 
 charactergraph
 
-# Create a visualization of the relationship between character count and readability
-# in Tweets.
+# Create a visualization of the relationship between character count and 
+# readability in Tweets.
 
 charactergraph2 <- tweetib1 %>%
   ggplot(aes(x = Flesch, y = str_length(text))) +
   geom_point() +
   geom_smooth(formula = y ~ x, method = "lm", se = TRUE) +
+  
+# I know that the line below surpasses the 80 character limit, but cutting it
+# off was not aesthetically appealing on my graph. Apologies! 
+  
   labs(title = "Readability and Character Count of Trump's Tweets (09/12/20 - 10/13/20)",
        subtitle = "",
        x = "Readability",
