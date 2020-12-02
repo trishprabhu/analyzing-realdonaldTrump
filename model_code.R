@@ -299,3 +299,8 @@ characterhist <- tweetib1 %>%
   theme_classic()
 
 characterhist 
+
+# Write RDS. Only need to do once!
+
+# write_rds(finalstocktib, "finalstock.rds")
+# write_rds(pp, "pp.rds")

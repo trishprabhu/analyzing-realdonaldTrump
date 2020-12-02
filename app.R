@@ -24,9 +24,17 @@ library(shinythemes)
 
 # Things To Do:
 
-# Interpret the statistical models under the "Models" tab (need help with 
-# interaction; check work (e.g. Model #2 interpretation) with Dan).
+# Interpret the statistical models under the "Models" tab (complete interaction;
+# review).
+# Complete "About The Data" section.
 # Ensure code meets Style Guide requirements.
+
+# Save the needed tibbles from the R scripts as rds's. 
+
+finalstocktib <- read_rds("finalstock.rds")
+finalgraphtib <- read_rds("finalgraph.rds")
+tweetib1 <- read_rds("tweetib1.rds")
+pp <- read_rds("pp.rds")
 
 # Reading in the data.
 
