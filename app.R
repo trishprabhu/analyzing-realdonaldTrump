@@ -356,7 +356,7 @@ tabPanel("About",
              methods to dig into this work.
              You can reach me at trishaprabhu@college.harvard.edu."),
          a("Visit the GitHub repo for this project here.", 
-           href = "https://github.com/trishprabhu/finalprojectmilestone3-4/tree/main")
+           href = "https://github.com/trishprabhu/analyzing-realdonaldTrump")
 ))
 
 # Define server logic:
