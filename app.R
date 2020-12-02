@@ -1,3 +1,4 @@
+
 # Download relevant libraries, including the sentimentr library, so I can
 # complete sentiment analysis!
 
@@ -165,14 +166,15 @@ tabPanel("Models",
                and Donald Trump's corresponding Twitter sentiment scores over a 
                1 month period (09/12 - 10/13). Interestingly, the S&P 500's 
                opening/closing differences and Trump's sentiment scores seem to 
-               be very weakly negatively correlated -- indeed the regression results 
-               (which you can view below, in the interactive table!) produce a 
-               coefficient for difference which is very small/negative. Overall, then, 
-               it seems that the stock market doesn't greatly influence 
-               Donald Trump's sentiment on Twitter, and any influence is such 
-               that as the difference becomes more positive (a higher closing 
-               index relative to the opening index) Trump becomes a bit more 
-               negative on Twitter (perhaps he feels vindicated?).
+               be very weakly negatively correlated -- indeed the regression 
+               results (which you can view below, in the interactive table!) 
+               produce a coefficient for difference which is very small/
+               negative. Overall, then, it seems that the stock market doesn't 
+               greatly influence Donald Trump's sentiment on Twitter, and any 
+               influence is such that as the difference becomes more positive 
+               (a higher closing index relative to the opening index) Trump 
+               becomes a bit more negative on Twitter (perhaps he feels 
+               vindicated?).
                While the relationship does seem to be very weak, we can still
                use this dependent variable as a control in our regression of
                Trump's sentiment scores on his approval ratings -- as we do 
@@ -273,19 +275,20 @@ tabPanel("Discussion",
              jump or a big drop affect his sentiment on Twitter?). The median of 
              the Intercept, 0.05, suggests that at a hypothetical difference
              value of 0, Trump's average sentiment score would be neutral.
-             Though relatively high, the Intercept's standard error value and its
-             resulting 95% confidence interval -- (0.015, 0.086) -- ultimately leads
-             us to the same conclusion. The median of the coefficient, -0.003, 
-             suggests that, on average, a 1 unit increase in the stock market's 
-             opening/closing difference results in a close to negligible dip in 
-             Trump's daily Twitter sentiment score. In other words, it seems that 
-             the stock market's changes are not a particularly powerful predictor 
-             of Trump's sentiment. This is, once again, qualified by the 
-             standard error/confidence interval. The standard error is very
-             high -- 0.014 -- producing a wide confidence interval of (-0.032,
-             0.027). It's clear, then, that the true value could in fact suggest
-             an important relationship between these two variables. We should,
-             then, take these findings with a grain of salt."),
+             Though relatively high, the Intercept's standard error value and 
+             its resulting 95% confidence interval -- (0.015, 0.086) -- 
+             ultimately leads us to the same conclusion. The median of the 
+             coefficient, -0.003, suggests that, on average, a 1 unit increase 
+             in the stock market's opening/closing difference results in a close 
+             to negligible dip in Trump's daily Twitter sentiment score. In 
+             other words, it seems that the stock market's changes are not a 
+             particularly powerful predictor of Trump's sentiment. This is, once 
+             again, qualified by the standard error/confidence interval. The 
+             standard error is very high -- 0.014 -- producing a wide confidence 
+             interval of (-0.032, 0.027). It's clear, then, that the true value 
+             could in fact suggest an important relationship between these two 
+             variables. We should, then, take these findings with a grain of 
+             salt."),
          tags$b(p("Interaction")),
          p("What if we create a model that looks at approval rating, stock 
                market opening/closing differences, and their interaction?"), 
@@ -296,8 +299,8 @@ tabPanel("Discussion",
          p("The median of the Intercept, -0.494, suggests that at a 
                hypothetical approval rating of 0% and a hypothetical stock
                opening/closing difference of 0, Trump's average sentiment
-               score would be relatively negative; this should, however, be taken
-               with a grain of salt, given the high standard error value (0.334).
+              score would be relatively negative; this should, however, be taken
+              with a grain of salt, given the high standard error value (0.334).
                This ultimately implies a 95% confidence interval of 
                (-1.162, 0.174) -- so the true value could, in fact, represent 
                a positive sentiment score. (This is similar to the Intercept
@@ -313,9 +316,9 @@ tabPanel("Discussion",
                0%, on average, a 1 unit increase in the stock market's 
              opening/closing difference results in 0.045 increase in Trump's
              daily Twitter sentiment score. This is quite different from the
-             second model, which implied a neglible dip. In any case, once again,
+            second model, which implied a neglible dip. In any case, once again,
              a large standard error value keeps us from striking gold; with a
-               95% confidence interval of (-0.228, 0.318), the true value could be 
+            95% confidence interval of (-0.228, 0.318), the true value could be 
                neglible or a robust increase/decrease."), 
          titlePanel("About The Data"),
          p(""), 
@@ -326,22 +329,25 @@ tabPanel("Discussion",
 # apologies -- the link below was too long to fit within the 80 character code 
 # line limit!
            
-           href = "https://www.dropbox.com/sh/5azksa5cvrsi9cs/AADvM-p9h8Sqf4oYzcgaMWXda?dl=0")
+href = "https://www.dropbox.com/sh/5azksa5cvrsi9cs/AADvM-p9h8Sqf4oYzcgaMWXda?dl=0")
+
 ),
 tabPanel("About", 
          titlePanel("About"),
          h3("Project Background and Motivations"),
          p("This project aims to explore US President Donald 
-             Trump's Tweets in the months leading up to the 2020 General Election.
-             Unlike his predecessors, Trump has used social media extensively,
-             through which he reaches over 80 million followers on Twitter alone.
+             Trump's Tweets in the months leading up to the 2020 General 
+             Election. Unlike his predecessors, Trump has used social media 
+             extensively, through which he reaches over 80 million followers on 
+             Twitter alone.
              Given the influence his Tweets have had during his Presidency, 
              I wanted to better understand what was driving his 
-             behavior (and specifically, his sentiment) on Twitter, and how those
-             patterns compared to those of his 2016 rival, Hillary Clinton.
-             My analysis rests on data sourced from the Trump Twitter Archive, 
-             an open-source database of several U.S. politicians' Tweets, as 
-             well as data from FiveThirtyEight and the CBOE Volatility Index."),
+             behavior (and specifically, his sentiment) on Twitter, and how 
+             those patterns compared to those of his 2016 rival, Hillary 
+             Clinton. My analysis rests on data sourced from the Trump Twitter 
+             Archive, an open-source database of several U.S. politicians' 
+             Tweets, as well as data from FiveThirtyEight and the CBOE 
+             Volatility Index."),
          h3("About Me"),
          p("My name is Trisha Prabhu, and I'm a member of Harvard College's
              Class of 2022. Originally from Naperville, Illinois, at Harvard,
@@ -409,6 +415,10 @@ server <- function(input, output) {
                      fill = "dodgerblue") +
       labs(x = "Sentiment Score",
            y = "Count",
+           
+# I know that the line below surpasses the 80 character limit, but cutting it
+# off was not aesthetically appealing on my graph. Apologies!
+           
            subtitle = "Overall, Hillary is very neutral in her Tweets; Trump is too, but with more variation",
            title = "Sentiment Expressed In Tweets",
            caption = "Source: Trump Twitter Archive") +
@@ -432,8 +442,8 @@ server <- function(input, output) {
       geom_point() +
       geom_smooth(formula = y ~ x, method = "lm", se = TRUE) +
       
-      # I know that the lines below surpasses the 80 character limit, but cutting them
-      # off was not aesthetically appealing on my graph. Apologies!
+# I know that the lines below surpasses the 80 character limit, but cutting them
+# off was not aesthetically appealing on my graph. Apologies!
       
       labs(title = "Trump's daily approval ratings and sentiment scores on Twitter, 09/12 - 10/13",
            subtitle = "Trump's approval ratings and sentiment scores seem to be weakly positively correlated",
@@ -461,6 +471,10 @@ server <- function(input, output) {
                      color = "white",
                      position = "identity") +
       labs(title = "Posterior Distributions for Sentiment Score",
+           
+# I know that the line below surpasses the 80 character limit, but cutting it
+# off was not aesthetically appealing on my graph. Apologies!
+           
            subtitle = "We have a much more precise estimate for the hypothetical Trump with a 45% approval rating, given the data",
            x = "Sentiment Score",
            y = "Proportion",
@@ -481,8 +495,8 @@ server <- function(input, output) {
       geom_point() +
       geom_smooth(formula = y ~ x, method = "lm", se = TRUE) +
       
-      # I know that the lines below surpasses the 80 character limit, but cutting them
-      # off was not aesthetically appealing on my graph. Apologies!
+# I know that the lines below surpasses the 80 character limit, but cutting them
+# off was not aesthetically appealing on my graph. Apologies!
       
       labs(title = "Stock opening/closing differences and Trump's daily sentiment scores on Twitter, 09/12 - 10/13",
            subtitle = "The S&P 500's opening/closing differences and Trump's sentiment scores seem to be very, very weakly negatively correlated",
@@ -497,6 +511,9 @@ server <- function(input, output) {
   
   regressiontableInput <- reactive({
     switch(input$regressiontable,
+           
+# I know that the lines below surpasses the 80 character limit, but cutting them
+# off was not an option. Apologies!
            
 "Approval Rating" = formula(finalstocktib$meanofmeans ~ finalstocktib$approval_ratings),
 "Stock Market" = formula(finalstocktib$meanofmeans ~ finalstocktib$range),
@@ -541,6 +558,10 @@ server <- function(input, output) {
              "Readability" = "Flesch") %>%
       gt() %>%
       tab_header(title = "Sentiment and Readability of Trump's Tweets", 
+                 
+# I know that the line below surpasses the 80 character limit, but cutting it
+# off was not aesthetically appealing on my table. Apologies!
+                 
                  subtitle = "Readability: 0 - 100, 100 is most readable; Sentiment: -1 to 1, 1 is most positive") %>% 
       tab_source_note("Source: Trump Twitter Archive") %>%
       tab_style(
@@ -565,11 +586,17 @@ server <- function(input, output) {
     tweetgraph <- tweetib1 %>%
       ggplot(aes(x = Flesch, y = sentimentmeans, color = str_length(text))) +
       geom_point() +
-      geom_label_repel(aes(label = ifelse(str_length(text) < 35, as.character(text),'')),
+      geom_label_repel(aes(label = ifelse(str_length(text) < 35, 
+                                          as.character(text),
+                                          '')),
                        box.padding   = 0.35, 
                        point.padding = 0.5,
                        segment.color = 'grey50') +
       geom_smooth(formula = y ~ x, method = "lm", se = TRUE) +
+      
+# I know that the lines below surpasses the 80 character limit, but cutting them
+# off was not aesthetically appealing on my graph. Apologies!
+      
       labs(title = "Readability and Sentiment of Trump's Tweets (09/12/20 - 10/13/20)",
            subtitle = "Readability has little relationship with Trump's sentiment on Twitter",
            x = "Readability (0 - 100; 0 is the least readable)",

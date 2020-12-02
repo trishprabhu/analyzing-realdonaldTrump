@@ -1,5 +1,5 @@
 
-# Load the MASS library.
+# Load the relevant libraries.
 
 library(MASS)
 library(rstanarm)

@@ -4,7 +4,7 @@
 # complicated, and explanation/reminder-focused comments were helpful 
 # (especially when I'd revisit the code after a while!). I hope that's okay.
 
-# Load the dplyr and sentimentr library.
+# Load the relevant libraries.
 
 library(magrittr)
 library(dplyr)
