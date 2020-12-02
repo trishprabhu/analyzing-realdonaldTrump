@@ -23,11 +23,6 @@ library(broom.mixed)
 library(ggrepel)
 library(shinythemes)
 
-# Things To Do:
-
-# Interpret the statistical models under the "Models" tab (complete interaction;
-# review).
-
 # Save the needed tibbles from the R scripts as rds's. 
 
 finalstocktib <- read_rds("finalstock.rds")
