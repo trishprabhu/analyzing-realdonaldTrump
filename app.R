@@ -28,7 +28,6 @@ library(shinythemes)
 # Interpret the statistical models under the "Models" tab (complete interaction;
 # review).
 # Complete "About The Data" section.
-# Ensure code meets Style Guide requirements.
 
 # Save the needed tibbles from the R scripts as rds's. 
 
@@ -321,7 +320,19 @@ tabPanel("Discussion",
             95% confidence interval of (-0.228, 0.318), the true value could be 
                neglible or a robust increase/decrease."), 
          titlePanel("About The Data"),
-         p(""), 
+         p("In this project, I drew upon 3 distinct data sources, and ultimately
+         utilized 4 datasets. I sourced my Tweet data -- both for Donald Trump, 
+         in 2020 (07/13/20 to 10/13/20), and Hillary Clinton, in 2016 (08/03/16 
+         to 11/03/16) -- from the Trump Twitter Archive, a digital database of 
+         prominent politicians' Tweets. In addition to the text data, the date, 
+         time, Retweet count, and other relevant variables were included. I
+         sourced my data on Donald Trump's approval ratings from 
+         FiveThirtyEight, a well-known forecasts website, that predicts
+         everything from election to sports outcomes. The data included the
+         various approval ratings captured by different polling agencies for 
+         each day during Trump's presidency. Finally, I sourced my stock
+         volatility data from the CBOE's Volatility Index; the data included
+         daily datapoints on stock opening, closes, highs, and lows in 2020."), 
          a("See the data currently in use by visiting this Dropbox link.",
            
 # At Dan's suggestion, I uploaded my datasets (which were large, and making it
