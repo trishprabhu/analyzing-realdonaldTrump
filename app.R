@@ -22,6 +22,16 @@ library(broom.mixed)
 library(ggrepel)
 library(shinythemes)
 
+# Things To Do:
+
+# Troubleshoot approvalSentiment graph bug.
+# Interpret the statistical models under the "Models" tab (need help with 
+# interaction; check work (e.g. Model #2 interpretation) with Dan).
+# Change the repo name -- make it informative.
+# Set your Shiny App such that it defaults to either the "Models" or 
+# "Visualizations" page.
+# Ensure code meets Style Guide requirements.
+
 # Reading in the data.
 
 trumptweets <- read_csv("data/Trump_tweets (1).csv")
