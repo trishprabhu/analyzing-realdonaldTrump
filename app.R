@@ -27,7 +27,6 @@ library(shinythemes)
 
 # Interpret the statistical models under the "Models" tab (complete interaction;
 # review).
-# Complete "About The Data" section.
 
 # Save the needed tibbles from the R scripts as rds's. 
 
@@ -261,7 +260,7 @@ tabPanel("Discussion",
              daily Twitter sentiment score at an approval rating of 0 
              (which, of course, makes sense!). The median of the coefficient
              on the approval rating variable, 0.0138, suggests that on average,
-             a 1% increase in Trump's daily approval rating results in about a 
+             a 1% increase in Trump's daily approval rating is associated with a 
              0.0138 increase in his daily Twitter sentiment score. In other
              words, his popularity in the public is directly reflected in his
              Tweets. Once again, the 95% confidence interval cautions us to
@@ -278,9 +277,9 @@ tabPanel("Discussion",
              its resulting 95% confidence interval -- (0.015, 0.086) -- 
              ultimately leads us to the same conclusion. The median of the 
              coefficient, -0.003, suggests that, on average, a 1 unit increase 
-             in the stock market's opening/closing difference results in a close 
-             to negligible dip in Trump's daily Twitter sentiment score. In 
-             other words, it seems that the stock market's changes are not a 
+             in the stock market's opening/closing difference is associated with 
+             a close to negligible dip in Trump's daily Twitter sentiment score. 
+             In other words, it seems that the stock market's changes are not a 
              particularly powerful predictor of Trump's sentiment. This is, once 
              again, qualified by the standard error/confidence interval. The 
              standard error is very high -- 0.014 -- producing a wide confidence 
@@ -306,19 +305,27 @@ tabPanel("Discussion",
                we saw in the first model.) The median of the coefficient on
                the approval rating variable suggests that at a hypothetical
                stock difference value of 0, on average, a 1% increase in Trump's 
-               daily approval rating results in about a 0.0125 increase in his 
+               daily approval rating is associated with a 0.0125 increase in his 
                daily Twitter sentiment score -- a value similar to the first
                model, but slightly lower. A larger standard error value here
                suggests that the true value could be as low as -0.003 or as
                high as 0.003. The median of the coefficient on the range
                variable suggests that at a hypothetical approval rating of
                0%, on average, a 1 unit increase in the stock market's 
-             opening/closing difference results in 0.045 increase in Trump's
-             daily Twitter sentiment score. This is quite different from the
-            second model, which implied a neglible dip. In any case, once again,
-             a large standard error value keeps us from striking gold; with a
-            95% confidence interval of (-0.228, 0.318), the true value could be 
-               neglible or a robust increase/decrease."), 
+             opening/closing difference is associated with a 0.045 increase in 
+             Trump's daily Twitter sentiment score. This is quite different from 
+             the second model, which implied a neglible dip. In any case, once 
+             again, a large standard error value keeps us from striking gold; 
+             with a 95% confidence interval of (-0.228, 0.318), the true value 
+             could be neglible or a robust increase/decrease."), 
+         p("Finally, the median of the interaction term suggests that at
+           hypothetical values of 1 for the approval rating and difference
+           variables, one would want to add the median Intercept, median 
+           approval rating coefficient, median difference coefficient, and, 
+           on average, -0.000995 to predict Trump's sentiment score. 
+           Like the others, this value is both small and insignificant, as 
+           indicated by the broad 95% confidence interval (-0.00729, 
+           0.00530)."),
          titlePanel("About The Data"),
          p("In this project, I drew upon 3 distinct data sources, and ultimately
          utilized 4 datasets. I sourced my Tweet data -- both for Donald Trump, 
@@ -687,7 +694,7 @@ server <- function(input, output) {
                      color = "white",
                      fill = "darkslategray2") +
       labs(title = "Character Count of Candidate's Tweets",
-           subtitle = "",
+           subtitle = "Hillary tends to be more verbose",
            x = "Character Count",
            y = "Frequency",
            caption = "Source: Trump Twitter Archive") +
