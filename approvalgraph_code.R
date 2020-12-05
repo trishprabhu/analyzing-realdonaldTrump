@@ -2,7 +2,7 @@
 # Just a note: a lot of my comments here are explanatory (simply describing what 
 # the code below does) -- this is because this data wrangling was very 
 # complicated, and explanation/reminder-focused comments were helpful 
-# (especially when I'd revisit the code after a while!). I hope that's okay.
+# (especially when I'd revisit the code after a while!).
 
 # Load the relevant libraries.
 
