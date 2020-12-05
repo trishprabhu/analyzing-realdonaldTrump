@@ -129,19 +129,20 @@ tabPanel("Models",
                      cautious in drawing any conclusions, though -- not only is 
                      the relationship relatively weak, this is also a relatively 
                      short period of time; a longer period (like 1 year) -- with 
-                     more datapoints -- would likely be more telling."),
+                     more datapoints -- would likely be more telling. It's no
+                     surprise that the confidence interval is so wide."),
            br(),
            br(),
            br(),
            br(),
            br(),
-           p("In this graph, we visualize the posterior distributions for
+           p("In this graph, I visualize the posterior distributions for
                  Trump's daily Twitter sentiment score in 3 hypothetical 
                  universes: one in which he has a 30% approval rating, one
                  in which he has a 45% approval rating, and one in which he has
                  a 60% approval rating. The distributions reflect the linear
                  relationship we observed above -- the hypothetical Trump with a
-                 60% approval rating has a posterior distribution for sentiment
+                 60% approval rating has a posterior distribution of sentiment
                  scores that is skewed to the right (more positive). It's also 
                  clear that we have a much more precise estimate for the 
                  hypothetical Trump with a 45% approval rating, given the data; 
@@ -161,13 +162,12 @@ tabPanel("Models",
                opening/closing differences and Trump's sentiment scores seem to 
                be very weakly negatively correlated -- indeed the regression 
                results (which you can view below, in the interactive table!) 
-               produce a coefficient for difference which is very small/
-               negative. Overall, then, it seems that the stock market doesn't 
-               greatly influence Donald Trump's sentiment on Twitter, and any 
-               influence is such that as the difference becomes more positive 
-               (a higher closing index relative to the opening index) Trump 
-               becomes a bit more negative on Twitter (perhaps he feels 
-               vindicated?).
+               produce a coefficient which is very small/negative. Overall, 
+               then, it seems that the stock market isn't associated with Donald 
+               Trump's sentiment on Twitter, and any influence is such that as 
+               the difference becomes more positive (a higher closing index 
+               relative to the opening index) Trump becomes a bit more negative 
+               on Twitter (perhaps he feels vindicated?).
                While the relationship does seem to be very weak, we can still
                use this dependent variable as a control in our regression of
                Trump's sentiment scores on his approval ratings -- as we do 
