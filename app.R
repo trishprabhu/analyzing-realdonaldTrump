@@ -1,6 +1,5 @@
 
-# Download relevant libraries, including the sentimentr library, so I can
-# complete sentiment analysis!
+# Download relevant libraries!
 
 library(shiny)
 library(readr)
@@ -23,7 +22,7 @@ library(broom.mixed)
 library(ggrepel)
 library(shinythemes)
 
-# Save the needed tibbles from the R scripts as rds's. 
+# Save the needed tibbles from the R scripts as rds files. 
 
 finalstocktib <- read_rds("finalstock.rds")
 finalgraphtib <- read_rds("finalgraph.rds")
@@ -47,7 +46,8 @@ hillary_sentiment_scores <- sentiment(hillarytweets$text[1:100])
 
 dataframe_options <- c("Hillary Clinton", "Donald Trump")
 
-# Define UI for application that draws a histogram
+# Define UI:
+
 ui <- navbarPage("Analyzing @realDonaldTrump: A Deep Dive Into Donald Trump's 
                  Tweets",
     tabPanel("Tweet Analysis",
@@ -320,7 +320,17 @@ tabPanel("Discussion",
            on average, -0.000995 to predict Trump's sentiment score. 
            Like the others, this value is both small and insignificant, as 
            indicated by the broad 95% confidence interval (-0.00729, 
-           0.00530)."),
+           0.00530).")),
+tabPanel("About",
+         titlePanel("Project Background and Motivations"),
+         p("This project aims to explore US President Donald Trump's Tweets in 
+         the months leading up to the 2020 General Election. Unlike his 
+         predecessors, Trump has used social media  extensively, through which 
+         he reaches over 88 million followers on Twitter alone. Given the 
+         influence his Tweets have had during his Presidency, I wanted to better 
+         understand what was driving his behavior (and specifically, his 
+         sentiment) on Twitter, and how those patterns compared to those of his 
+         2016 rival, Hillary Clinton."),
          titlePanel("About The Data"),
          p("In this project, I drew upon 3 distinct data sources, and ultimately
          utilized 4 datasets. I sourced my Tweet data -- both for Donald Trump, 
@@ -342,26 +352,8 @@ tabPanel("Discussion",
 # apologies -- the link below was too long to fit within the 80 character code 
 # line limit!
            
-href = "https://www.dropbox.com/sh/5azksa5cvrsi9cs/AADvM-p9h8Sqf4oYzcgaMWXda?dl=0")
-
-),
-tabPanel("About", 
-         titlePanel("About"),
-         h3("Project Background and Motivations"),
-         p("This project aims to explore US President Donald 
-             Trump's Tweets in the months leading up to the 2020 General 
-             Election. Unlike his predecessors, Trump has used social media 
-             extensively, through which he reaches over 80 million followers on 
-             Twitter alone.
-             Given the influence his Tweets have had during his Presidency, 
-             I wanted to better understand what was driving his 
-             behavior (and specifically, his sentiment) on Twitter, and how 
-             those patterns compared to those of his 2016 rival, Hillary 
-             Clinton. My analysis rests on data sourced from the Trump Twitter 
-             Archive, an open-source database of several U.S. politicians' 
-             Tweets, as well as data from FiveThirtyEight and the CBOE 
-             Volatility Index."),
-         h3("About Me"),
+href = "https://www.dropbox.com/sh/5azksa5cvrsi9cs/AADvM-p9h8Sqf4oYzcgaMWXda?dl=0"),
+         titlePanel("About Me"),
          p("My name is Trisha Prabhu, and I'm a member of Harvard College's
              Class of 2022. Originally from Naperville, Illinois, at Harvard,
              I reside in Cabot House. I'm concentrating in Government, on
