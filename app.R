@@ -331,6 +331,8 @@ tabPanel("About",
          understand what was driving his behavior (and specifically, his 
          sentiment) on Twitter, and how those patterns compared to those of his 
          2016 rival, Hillary Clinton."),
+         a("Visit the GitHub repo for this project here.", 
+           href = "https://github.com/trishprabhu/analyzing-realdonaldTrump"),
          titlePanel("About The Data"),
          p("In this project, I drew upon 3 distinct data sources, and ultimately
          utilized 4 datasets. I sourced my Tweet data -- both for Donald Trump, 
@@ -365,9 +367,7 @@ href = "https://www.dropbox.com/sh/5azksa5cvrsi9cs/AADvM-p9h8Sqf4oYzcgaMWXda?dl=
              spearheading policy and work to address these challenges. You'll 
              often find me utilizing data science and quantitative research 
              methods to dig into this work.
-             You can reach me at trishaprabhu@college.harvard.edu."),
-         a("Visit the GitHub repo for this project here.", 
-           href = "https://github.com/trishprabhu/analyzing-realdonaldTrump")
+             You can reach me at trishaprabhu@college.harvard.edu.")
 ))
 
 # Define server logic:
