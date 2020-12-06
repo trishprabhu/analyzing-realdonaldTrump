@@ -1,10 +1,5 @@
 
-# Just a note: a lot of my comments here are explanatory (simply describing what 
-# the code below does) -- this is because this data wrangling was very 
-# complicated, and explanation/reminder-focused comments were helpful 
-# (especially when I'd revisit the code after a while!).
-
-# Load the relevant libraries.
+# Load the relevant libraries:
 
 library(magrittr)
 library(dplyr)
@@ -17,14 +12,14 @@ library(gt)
 
 
 # Load the lubridate library; use as.Date to create a new column with the
-# created_at values in MDY format.
+# created_at values in MDY format:
 
 library(lubridate)
 trumptweets$newdates <- (as.Date(mdy_hms(trumptweets$created_at)))
 
 # Create a subset of the trumptweets tibble with a new element_id column (to
 # calculate sentiment means later) and a smaller set of observations (to begin
-# with, for Milestone purposes).
+# with, for Milestone purposes):
 
 newtrumptib <- trumptweets %>%
   mutate(element_id = 1:2927) %>%
@@ -33,7 +28,7 @@ newtrumptib <- trumptweets %>%
   head(., 1264)
 
 # Use sentiment() to calculate sentiment scores for 500 Tweets in the 
-# trumptweets dataset.
+# trumptweets dataset:
 
 trump_ss <- sentiment(get_sentences(trumptweets$text[1:1264])) 
 
@@ -59,23 +54,23 @@ graphtib2 <- graphtib1 %>%
   summarize(meanofmeans = mean(sentimentmeans),
             .groups = "drop")
 
-# Read in the approval_polllist dataset.
+# Read in the approval_polllist dataset:
 
 approval_polllist <- read_csv("data/approval_polllist.csv")
 
 # Modify the dataset to only include the relevant time period (the time period
-# that corresponds with graphtib2).
+# that corresponds with graphtib2):
 
 trump_approvals_almost <- approval_polllist %>%
   mutate(id = 1:15857) %>%
   filter(id >= 15725 & id <= 15851)
   
 # But we need to make one last alteration (removing Row 48, which includes the
-# approval rating from a date not in the relevant time period).
+# approval rating from a date not in the relevant time period):
   
 trump_approvals <- trump_approvals_almost[-119, ]
   
-# Create a vector of ending dates to iterate over; order appropriately.
+# Create a vector of ending dates to iterate over; order appropriately:
 
 trump_approvals1 <- trump_approvals %>%
   mutate(enddate = as.Date(enddate, "%m/%d/%Y")) %>%
@@ -107,7 +102,8 @@ for (i in 1:n) {
 }
 results
 
-# Add the results vector to finalgraphtib.
+# Add the results vector to finalgraphtib. We now have a tibble which has the
+# daily approval ratings AND the sentiment scores!
 
 finalgraphtib <- graphtib2 %>%
   mutate(approval_ratings = results)
@@ -132,7 +128,7 @@ finalgraph <- finalgraphtib %>%
 
 finalgraph
 
-# Add readability scores to graphtib1 -- creating tweettib1.
+# Add readability scores to graphtib1 -- creating tweettib1:
 
 text <- graphtib1$text
 
@@ -147,6 +143,9 @@ trump_join <- trump_read %>%
 
 tweetib1 <- inner_join(graphtib1, trump_join, by = "element_id")
 
+# Links in Tweets (e.g. https....) often show up with a sentiment score of 0;
+# I didn't want these to cloud the results, so I got rid of them!
+
 tweetib1 <- tweetib1 %>%
   filter(sentimentmeans < 0 | sentimentmeans > 0)
 
@@ -157,6 +156,8 @@ nicetib <- tweetib1 %>%
   rename("Tweet" = "text",
          "Sentiment" = "sentimentmeans",
          "Readability" = "Flesch")
+
+# Create a table visualizing the sentiment and readability of Trump's Tweets:
 
 nicetib %>%
   gt() %>%

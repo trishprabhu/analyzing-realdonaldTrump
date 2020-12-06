@@ -1,10 +1,5 @@
 
-# Just a note: a lot of my comments here are explanatory (simply describing what 
-# the code below does) -- this is because this data wrangling was very 
-# complicated, and explanation/reminder-focused comments were helpful 
-# (especially when I'd revisit the code after a while!).
-
-# Load the relevant libraries.
+# Load the relevant libraries:
 
 library(MASS)
 library(rstanarm)
@@ -13,7 +8,7 @@ library(gtsummary)
 library(broom.mixed)
 library(ggrepel)
 
-# Create a stan_glm model.
+# Create a stan_glm model:
 
 fit_obj <- stan_glm(meanofmeans ~ approval_ratings,
               data = finalgraphtib, 
@@ -22,7 +17,8 @@ fit_obj <- stan_glm(meanofmeans ~ approval_ratings,
 
 print(fit_obj, view = FALSE, digits = 5)
 
-# Create a table of the regression results:
+# Create a table of the regression results; using as_gt() allows us to convert
+# into a gt table that we can format:
 
 fit_obj %>%
   tbl_regression() %>%
@@ -36,7 +32,8 @@ fit_obj %>%
   tab_source_note("Source: Trump Twitter Archive") 
 
 # What sentiment score would we expect on 3 different days, with Donald Trump's
-# approval rating at 30%, 45%, and 60%, respectively?
+# approval rating at 30%, 45%, and 60%, respectively? We can use
+# posterior_predict to find out:
 
 new <- tibble(approval_ratings = c(30, 45, 60))
 
@@ -73,11 +70,11 @@ approvalratingdistribution <- pp %>%
 approvalratingdistribution
 
 # Read in stock data (another variable that could potentially influence Trump's
-# daily Twitter score/can serve as a control).
+# daily Twitter score/can serve as a control):
 
 stock_data <- read_csv("data/current_stock_data.csv")
 
-# (Substantially) clean (yikes!) and subset the data to the relevant date range.
+# (Substantially) clean (yikes!) and subset the data to the relevant date range:
 
 colnames(stock_data) <- c("Date", 
                 "open", 
@@ -87,6 +84,10 @@ colnames(stock_data) <- c("Date",
 
 stock_data <- stock_data[-1, ]
 
+# When first looking at the data, I noticed something odd; it seemed as if
+# several days were missing! I then realized: the markets are closed on the
+# weekends (Saturday/Sunday), so we must account for these "missing days" (which
+# in essence, carry over the values from the Friday) when cleaning the data.
 
 updated_stock_data <- stock_data %>%
   mutate(id = 1:4245) %>%
@@ -172,11 +173,14 @@ updated_stock_data <- stock_data %>%
 
 final_stock_data <- updated_stock_data[-1, ]
 
+# By joining finalgraphtib and final_stock_data, we now have a tibble with
+# daily approval ratings, Twitter sentiment scores, and stock differences.
+
 finalstocktib <- inner_join(finalgraphtib, final_stock_data, by = "newdates")
 
 # Create a "robust" model. This is a form of weighted least squares (mm 
 # estimator; not as efficient, given the size of data, but it's going to handle 
-# any outliers).
+# any outliers):
 
 stock_obj_rlm <- rlm(meanofmeans ~ range, 
                  data = finalstocktib,
@@ -185,7 +189,7 @@ stock_obj_rlm <- rlm(meanofmeans ~ range,
 summary(stock_obj_rlm)
 
 # Create a stan_glm model to examine stock volatility/Trump's (the results
-# suggest a similar coefficient to the one above).
+# suggest a similar coefficient to the one above):
 
 stock_obj <- stan_glm(meanofmeans ~ range,
                     data = finalstocktib, 
@@ -194,7 +198,7 @@ stock_obj <- stan_glm(meanofmeans ~ range,
 print(stock_obj, view = FALSE, digits = 5)
 
 # Create a visualization of the relationship between range (stock volatility)
-# Trump's sentiment scores (over the same period).
+# Trump's sentiment scores (over the same period):
 
 stockgraph <- finalstocktib %>%
   ggplot(aes(x = range, y = meanofmeans)) +
@@ -215,7 +219,7 @@ stockgraph <- finalstocktib %>%
 stockgraph
 
 # Let's now return to our initial model, and bring in stock volatility as a 
-# control variable.
+# control variable (we do this by adding the variable to the equation):
 
 fit_obj <- stan_glm(meanofmeans ~ approval_ratings + range,
                     data = finalstocktib, 
@@ -225,7 +229,7 @@ print(fit_obj, view = FALSE, digits = 5)
 
 
 # Create a visualization of the relationship between readability and sentiment
-# in Tweets.
+# in Tweets:
 
 tweetgraph <- tweetib1 %>%
   ggplot(aes(x = Flesch, y = sentimentmeans, color = str_length(text))) +
@@ -251,7 +255,7 @@ tweetgraph <- tweetib1 %>%
 
 tweetgraph
 
-# Let's create a model looking at regressing sentiment in Tweets on readability.
+# Let's create a model looking at regressing sentiment in Tweets on readability:
 
 Flesch_obj <- stan_glm(sentimentmeans ~ Flesch,
                     data = tweetib1, 
@@ -260,7 +264,7 @@ Flesch_obj <- stan_glm(sentimentmeans ~ Flesch,
 print(Flesch_obj, view = FALSE, digits = 5)
 
 # Let's create a model looking at regressing sentiment in Tweets on character
-# count.
+# count:
 
 character_obj <- stan_glm(sentimentmeans ~ str_length(text),
                        data = tweetib1, 
@@ -269,7 +273,7 @@ character_obj <- stan_glm(sentimentmeans ~ str_length(text),
 print(character_obj, view = FALSE, digits = 5)
 
 # Create a visualization of the relationship between character count and 
-# sentiment in Tweets.
+# sentiment in Tweets:
 
 charactergraph <- tweetib1 %>%
   ggplot(aes(x = str_length(text), y = sentimentmeans)) +
@@ -289,7 +293,7 @@ charactergraph <- tweetib1 %>%
 charactergraph
 
 # Create a visualization of the relationship between character count and 
-# readability in Tweets.
+# readability in Tweets:
 
 charactergraph2 <- tweetib1 %>%
   ggplot(aes(x = Flesch, y = str_length(text))) +
@@ -309,7 +313,7 @@ charactergraph2 <- tweetib1 %>%
 charactergraph2
 
 # Create a visualization of character count for both Donald Trump and Hillary
-# Clinton.
+# Clinton:
 
 characterhist <- tweetib1 %>%
   ggplot(aes(x = str_length(text))) +

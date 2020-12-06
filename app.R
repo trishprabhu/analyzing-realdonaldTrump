@@ -90,7 +90,7 @@ ui <- navbarPage("Analyzing @realDonaldTrump: A Deep Dive Into Donald Trump's
                            gt_output(outputId = "tweetread")
                        ),
 
-# The sidebars were great spots to both 1) provide some context around the
+# The sidebars are great spots to both 1) provide some context around the
 # graphics, and 2) align/style the page so that the graphs were aesthetically 
 # appealing.
                        
