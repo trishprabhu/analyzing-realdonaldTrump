@@ -1,4 +1,8 @@
 
+# Just a note: many of my comments/explanations are in the R scripts 
+# "approvalgraph_code.R" and "model_code.R". Check in there to get a better
+# sense of my thinking when putting together this ShinyApp!
+
 # Download relevant libraries!
 
 library(shiny)
