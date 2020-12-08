@@ -509,7 +509,7 @@ server <- function(input, output) {
            subtitle = "The S&P 500's opening/closing differences and Trump's sentiment scores seem to be very, very weakly negatively correlated",
            x = "Difference",
            y = "Sentiment Score",
-           caption = "Source: Trump Twitter Archive; CBOE Volatility Index") +
+           caption = "Source: Trump Twitter Archive, CBOE Volatility Index") +
       theme_bw()
     
     stockgraph
@@ -519,12 +519,12 @@ server <- function(input, output) {
   regressiontableInput <- reactive({
     switch(input$regressiontable,
            
-# I know that the lines below surpasses the 80 character limit, but cutting them
-# off was not an option. Apologies!
-           
-"Approval Rating" = formula(finalstocktib$meanofmeans ~ finalstocktib$approval_ratings),
-"Stock Market" = formula(finalstocktib$meanofmeans ~ finalstocktib$range),
-"Interaction" = formula(finalstocktib$meanofmeans ~ finalstocktib$approval_ratings * finalstocktib$range))
+"Approval Rating" = formula(finalstocktib$meanofmeans ~ 
+                              finalstocktib$approval_ratings),
+"Stock Market" = formula(finalstocktib$meanofmeans ~ 
+                           finalstocktib$range),
+"Interaction" = formula(finalstocktib$meanofmeans ~ 
+                          finalstocktib$approval_ratings * finalstocktib$range))
   
   })
   
@@ -549,7 +549,11 @@ server <- function(input, output) {
                  confidencelow = "CI Low",
                  confidencehigh = "CI High") %>%
       tab_header(title = "Regression of Trump's Twitter Sentiment Scores") %>% 
-      tab_source_note("Source: Trump Twitter Archive") 
+      
+# I know that the line below surpasses the 80 character limit, but cutting it
+# off was not aesthetically appealing on my table. Apologies!
+      
+      tab_source_note("Trump Twitter Archive, FiveThirtyEight, CBOE Volatility Index") 
     
   }) 
   
