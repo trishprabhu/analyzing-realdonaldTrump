@@ -79,7 +79,7 @@ ui <- navbarPage("Analyzing @realDonaldTrump: A Deep Dive Into Donald Trump's
                                )),
                            mainPanel(
                                verbatimTextOutput("summary"),
-                               tableOutput("view"),
+                               tableOutput("view")
                            )),
                        br(),
                        br(),
@@ -242,6 +242,7 @@ tabPanel("Discussion",
          p("This analysis refers to the Interactive Regression Results
                displayed on the Models page."),
          tags$b(p("Approval Rating")),
+         uiOutput('eq1'),
          p("The first model regresses Trump's daily Twitter sentiment scores 
              on his associated daily approval ratings. The median of the 
              Intercept, -0.554, suggests that at a hypothetical approval rating 
@@ -262,6 +263,7 @@ tabPanel("Discussion",
              low as 0, or as as high as 0.02. We should far from accept these 
              findings as conclusive; they are not necessarily significant."),
          tags$b(p("Stock Market")),
+         uiOutput('eq2'),
          p("The second model regresses Trump's daily Twitter sentiment scores 
              on daily stock market opening/closing differences (does a big
              jump or a big drop affect his sentiment on Twitter?). The median of 
@@ -282,6 +284,7 @@ tabPanel("Discussion",
              variables. We should, then, take these findings with a grain of 
              salt."),
          tags$b(p("Interaction")),
+         uiOutput('eq3'),
          p("What if we create a model that looks at approval rating, stock 
                market opening/closing differences, and their interaction?"), 
          p("This is exactly what the last model aims to do, regressing
@@ -693,6 +696,27 @@ server <- function(input, output) {
     
     characterhist 
     
+  })
+  
+  output$eq1 <- renderUI({
+    
+    withMathJax(helpText("$$ sentiment_i = \\beta_0 + \\beta_1 approval_{i} + 
+                         \\epsilon_i$$"))
+    
+  })
+
+  output$eq2 <- renderUI({
+
+    withMathJax(helpText("$$ sentiment_i = \\beta_0 + \\beta_1 stock_{i} + 
+                         \\epsilon_i$$"))
+
+  })
+
+  output$eq3 <- renderUI({
+
+    withMathJax(helpText("$$ sentiment_i = \\beta_0 + \\beta_1 approval_{i} + 
+                         \\beta_2 stock_{i} + \\epsilon_i$$"))
+
   })
 
 }
