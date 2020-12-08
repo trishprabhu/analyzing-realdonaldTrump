@@ -240,7 +240,7 @@ tweetgraph <- tweetib1 %>%
                    segment.color = 'grey50') +
   geom_smooth(formula = y ~ x, method = "lm", se = TRUE) +
   
-# I know that the lines below surpasses the 80 character limit, but cutting them
+# I know that the lines below surpass the 80 character limit, but cutting them
 # off was not aesthetically appealing on my graph. Apologies! 
   
   labs(title = "Readability and Sentiment of Trump's Tweets (09/12/20 - 10/13/20)",
