@@ -553,7 +553,7 @@ server <- function(input, output) {
 # I know that the line below surpasses the 80 character limit, but cutting it
 # off was not aesthetically appealing on my table. Apologies!
       
-      tab_source_note("Trump Twitter Archive, FiveThirtyEight, CBOE Volatility Index") 
+      tab_source_note("Source: Trump Twitter Archive, FiveThirtyEight, CBOE Volatility Index") 
     
   }) 
   
