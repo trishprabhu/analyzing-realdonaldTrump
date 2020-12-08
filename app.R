@@ -238,7 +238,7 @@ tabPanel("Visualization",
                                               "Donald Trump"))),
          mainPanel(plotOutput(outputId = "char"))),
 tabPanel("Discussion",
-         titlePanel("Interpreting the Model"),
+         titlePanel("Interpreting the Models"),
          p("This analysis refers to the Interactive Regression Results
                displayed on the Models page."),
          tags$b(p("Approval Rating")),
