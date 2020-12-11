@@ -63,10 +63,6 @@ ui <- navbarPage("Analyzing @realDonaldTrump: A Deep Dive Into Donald Trump's
                                            label = "Choose a Twitter account:",
                                            choices = c("Hillary Clinton", 
                                                        "Donald Trump")),
-                               numericInput(inputId = "obs",
-                                            label = "Number of observations to 
-                                            view:",
-                                            value = 10),
                                
 # Originally, I just had a numericInput() box; at Dan's suggestion, I added a
 # slider, so folks who visit my Shiny App can more easily look at the desired
@@ -75,7 +71,7 @@ ui <- navbarPage("Analyzing @realDonaldTrump: A Deep Dive Into Donald Trump's
                                sliderInput("obs", 
                                            "Slide to the number of observations 
                                            to view:",
-                                           min = 0, max = 300, value = 30
+                                           min = 0, max = 254, value = 30
                                )),
                            mainPanel(
                                verbatimTextOutput("summary"),
@@ -706,22 +702,23 @@ server <- function(input, output) {
   
   output$eq1 <- renderUI({
     
-    withMathJax(helpText("$$ sentiment_i = \\beta_0 + \\beta_1 approval_{i} + 
-                         \\epsilon_i$$"))
+    withMathJax(helpText("$$ sentiment_i = \\beta_0 + 
+    \\beta_1 approvalratings_{i} +  \\epsilon_i$$"))
     
   })
 
   output$eq2 <- renderUI({
 
-    withMathJax(helpText("$$ sentiment_i = \\beta_0 + \\beta_1 stock_{i} + 
+    withMathJax(helpText("$$ sentiment_i = \\beta_0 + \\beta_1 range_{i} + 
                          \\epsilon_i$$"))
 
   })
 
   output$eq3 <- renderUI({
 
-    withMathJax(helpText("$$ sentiment_i = \\beta_0 + \\beta_1 approval_{i} + 
-                         \\beta_2 stock_{i} + \\epsilon_i$$"))
+    withMathJax(helpText("$$ sentiment_i = \\beta_0 + 
+    \\beta_1 approvalratings_{i} + \\beta_2 range_{i} 
+    + \\beta_3 (approvalratings_{i} * range_{i}) + \\epsilon_i$$"))
 
   })
 
